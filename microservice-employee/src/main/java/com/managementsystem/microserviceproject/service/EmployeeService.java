@@ -1,6 +1,7 @@
 package com.managementsystem.microserviceproject.service;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -22,29 +23,27 @@ public class EmployeeService {
     private RestTemplate restTemplate;
 
     public EmployeeResponse findEmployeeWithDepartmentById(Long id) {
+        // Get employee data entity from database
         Employee employee = employeeRepository.findEmployeeById(id);
 
         // RestTemplate to fetch department data
-        DepartmentResponse departmentResponse = 
-             restTemplate.getForObject("http://localhost:8081/departments/{id}",DepartmentResponse.class,id );
+        DepartmentResponse departmentResponse = restTemplate.getForObject(
+                                                "http://localhost:8081/departments/{id}",DepartmentResponse.class,id );
+         // 1st way to convert entity to response 
+        // EmployeeResponse employeeResponse = modelMapper.map(employee, EmployeeResponse.class);
+        EmployeeResponse employeeResponse = new EmployeeResponse();
 
-        EmployeeResponse employeeResponse = modelMapper.map(employee, EmployeeResponse.class);
+        // 2nd way to convert entity to response 
+        BeanUtils.copyProperties(employee, employeeResponse);
+
         employeeResponse.setDepartment(departmentResponse);
-
         return employeeResponse;
+
     }
-    
+
 
     public void saveEmployee(Employee employee) {
         employeeRepository.save(employee);
     }
-
-
-
-    // public DepartmentResponse getDepartmentDataById(Long id) {
-    //     String url = "http://localhost:8081/departments/{id}";
-    //     DepartmentResponse departmentResponse = restTemplate.getForObject(url, DepartmentResponse.class, id);
-    //     return departmentResponse;
-    // }
 
 }

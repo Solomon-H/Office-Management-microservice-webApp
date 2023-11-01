@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.managementsystem.microserviceproject.entity.Employee;
-import com.managementsystem.microserviceproject.responseDto.DepartmentResponse;
 import com.managementsystem.microserviceproject.responseDto.EmployeeResponse;
 import com.managementsystem.microserviceproject.service.EmployeeService;
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/employees")
 public class EmployeeController {
 
     @Autowired
@@ -32,11 +31,5 @@ public class EmployeeController {
         employeeService.saveEmployee(employee);
 
     }
-
-    // @GetMapping("/{id}/department")
-    // public ResponseEntity<DepartmentResponse> getEmployeeDepartment(@PathVariable Long id) {
-    //     DepartmentResponse departmentResponse = employeeService.getDepartmentDataById(id);
-    //     return ResponseEntity.ok(departmentResponse);
-    // }
 
 }

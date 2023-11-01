@@ -12,7 +12,7 @@ import com.managementsystem.microserviceproject.entity.Department;
 import com.managementsystem.microserviceproject.service.DepartmentService;
 
 @RestController
-@RequestMapping("/department")
+@RequestMapping("/departments")
 public class DepartmentController {
     
     @Autowired
