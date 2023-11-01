@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "MicroserviceProjectApplication",
+            "request": "launch",
+            "mainClass": "com.managementsystem.microserviceproject.MicroserviceProjectApplication",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MicroserviceProjectApplication<com.managementsystem-microservice-project>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.managementsystem.microserviceproject.MicroserviceProjectApplication",
+            "projectName": "com.managementsystem-microservice-project",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
